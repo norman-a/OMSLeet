@@ -17,6 +17,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+from oms_leet import views # Import your app views
+
+app_name = 'oms_leet'
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('hello', views.hello_world, name='hello_world'), # Creates a URL for the page you want to print the first argument in the function is the URL ending, the second is the function from the views and the third the the internal variable name
+    path('', views.main_page, name='main_page'), # Creates a URL for the page you want to print the first argument in the function is the URL ending, the second is the function from the views and the third the the internal variable name
+    path('user_input', views.user_input, name='user_input') # Creates a URL for the page you want to print the first argument in the function is the URL ending, the second is the function from the views and the third the the internal variable name
+
 ]
