@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Food list{% endblock %}
+{% block page_title %}Food{% endblock %}
+
+{% block body %} 
+{% comment %} Create a form with the required fields {% endcomment %}
+    <form action = "/user_input" method="get">
+        <br><input type="text" name="name" placeholder="name"/></br>
+        <br><input type="text" name="food" placeholder="food"/></br>
+        <br><textarea type="text" name="description" placeholder="description"></textarea></br>
+        <br><button type="Add">
+            Add
+        </button></br>
+
+        {% comment %} Bring the context to the page {% endcomment %}
+        {% for food in food_dataset %}
+            <p> ID : {{food.id}} </p>
+            <p> User: {{food.username}}, Food: {{food.foodName}}, Description: {{food.description}} </p>
+        {% endfor %}
+
+{% endblock %}
