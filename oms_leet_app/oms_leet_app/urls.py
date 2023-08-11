@@ -16,15 +16,20 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-
-from oms_leet import views # Import your app views
+from oms_leet import views as user_views
+from django.contrib.auth import views as auth_views
 
 app_name = 'oms_leet'
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('hello', views.hello_world, name='hello_world'), # Creates a URL for the page you want to print the first argument in the function is the URL ending, the second is the function from the views and the third the the internal variable name
-    path('', views.main_page, name='main_page'), # Creates a URL for the page you want to print the first argument in the function is the URL ending, the second is the function from the views and the third the the internal variable name
-    path('user_input', views.user_input, name='user_input') # Creates a URL for the page you want to print the first argument in the function is the URL ending, the second is the function from the views and the third the the internal variable name
+    path('', user_views.home, name='home'),
+    path('signup/', user_views.signup, name='signup'),
+    path('login/', auth_views.LoginView.as_view(template_name="users/login.html"), name='login'),
+    path('logout/', auth_views.LogoutView.as_view(template_name="users/logout.html"), name='logout'),
+    # path('admin/', admin.site.urls),
+    # path('hello', views.hello_world, name='hello_world'), # Creates a URL for the page you want to print the first argument in the function is the URL ending, the second is the function from the views and the third the the internal variable name
+    # path('', views.main_page, name='main_page'), # Creates a URL for the page you want to print the first argument in the function is the URL ending, the second is the function from the views and the third the the internal variable name
+    # path('user_input', views.user_input, name='user_input') # Creates a URL for the page you want to print the first argument in the function is the URL ending, the second is the function from the views and the third the the internal variable name
 
 ]
